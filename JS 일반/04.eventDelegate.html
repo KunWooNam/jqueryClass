@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eventDelegate.html</title>
+</head>
+<body>
+  
+  <input id="textWord">
+  <button type="button" id="btnAdd">추가</button>
+  <p class="word">list</p>
+  <p class="word">nice</p>
+  <p class="word">good</p>
+  <p class="word">very</p>
+  <p class="word">바나나</p>
+  <script>
+    //버튼클릭 이벤트 : input 태그의 입력값으로 p 태그를 만들어 body태그에 추가
+    const btn = document.querySelector("#btnAdd");
+    const body = document.querySelector("body");
+    btn.addEventListener("click", (e)=>{
+      let inputVal = document.querySelector("#textWord").value;
+      body.insertAdjacentHTML("beforeend", `<p class="word">${inputVal}</p>`);
+      inputVal = "";
+
+      
+      
+    })
+    
+    //.word 태그에 마우스오버 이벤트 적용 -> 배경색 변경
+    //- 직접이벤트
+    /*
+    const wordClass = document.querySelectorAll(".word");
+      for(word of wordClass){
+        word.addEventListener("mouseenter" , (e)=>{
+          event.target.style.backgroundColor = 'yellow';
+        })
+      }
+    */
+    
+    // - 그룹(=위임)이벤트 : 부모태그에 이벤트 지정(이벤트 전파)
+    document.body.addEventListener("mouseover", function(){
+      if(event.target.tagName == 'P'){  // 또는 조건으로 evnet.target.clasList.contains("word") 가능
+      event.target.style.backgroundColor = 'yellowgreen';
+      };
+  
+    })
+      /*
+       1. word.style.~보다 enver.target을 쓰는게 좋음.  
+       2. for문의 인수로 let word를 쓰지않고 그냥 word를 쓰면 전역 변수이며, 마지막 word만을 특정한다. let word쓰면 word.style.~ 도 가능
+       3. event.target.tagName == 'P' 또는 evnet.target.clasList.contains("word")
+      */
+  </script>
+</body>
+</html>

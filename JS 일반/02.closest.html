@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>closest.html</title>
+</head>
+<body>
+  <table>
+    <tr data-goodsid="g1">
+      <td>1</td>
+      <td>2</td>
+      <td id="tdTag"><button type="button" class="btnAdd">추가</button></td>
+    </tr>
+    <tr data-goodsid="g2">
+      <td>4</td>
+      <td>5</td>
+      <td><button type="button" class="btnAdd">추가</button></td>
+    </tr>
+    <tr data-goodsid="g3">
+      <td>7</td>
+      <td>8</td>
+      <td><button type="button" class="btnAdd">추가</button></td>
+    </tr>
+  </table>
+
+  <script>
+    // document.querySelector(".btnAdd").closest("tr").fristElementChild.innerText;
+    
+    // 버튼 클릭 시 tr의 data속성읽기
+    /* document.querySelector(".btnAdd").addEventListener("click", function(){
+      console.log(document.querySelector(".btnAdd").closest("tr").dataset.goodsid);
+    }) */
+
+    let btnAdds = document.querySelectorAll(".btnAdd");
+    // - for문 방식
+    /*for(btn of btnAdds){
+      btn.addEventListener("click", function(e){ //e=>{} 화살표함수, 즉 익명함수는 주인이 window임
+        //this 혹은 (화살표함수는 this 사용 불가능), //console.log(this)
+        //e.target = this(btn,본인객체를참조)
+        
+        let goodsid = this.closest("tr").dataset.goodsid;
+        //또는 let goodsid = event.target.closest("tr").dataset.goodsid;
+        
+        console.log(goodsid);
+        //e.target || window.event.target || this 
+      })
+    }
+    */
+
+    // -그룹이벤트 방식
+    let table = document.querySelector("table");
+    table.addEventListener("click" , function(e){
+      if(event.target.classList.contains("btnAdd")){
+        let goodsid = event.target.closest("tr").dataset.goodsid;
+        console.log(goodsid);
+      }
+    })
+
+    /*
+    1. e=>{} 화살표함수, 즉 익명함수는 주인이 window임
+    2. this 혹은 (화살표함수는 this 사용 불가능), //console.log(this)
+    3. e.target = this(btn,본인객체를참조)
+    4. e.target || window.event.target || this
+    */
+  </script>
+</body>
+</html>
