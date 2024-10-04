@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>json.html</title>
+</head>
+<body>
+  <script>
+    //첫번째 취미만 출력
+    let emp = {no: 1, name: 'Karl', hobby : ['ski','read']}
+    console.log(emp.hobby[0]);
+
+    //두 번째 사원의 첫번째 취미만 출력
+    let emps = [
+                {no: 1, name: 'Karl', hobby : ['ski','read']},
+                {no: 2, name: 'tom', hobby : ['bowling', 'read']}
+    ]
+    console.log(emps[1].hobby[0]);
+    
+
+  </script>
+</body>
+</html>

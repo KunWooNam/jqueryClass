@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <title>eventDelegate.html</title>
+</head>
+<body>
+  
+  <input id="textWord">
+  <button type="button" id="btnAdd">추가</button>
+  <p class="word">list</p>
+  <p class="word">nice</p>
+  <p class="word">good</p>
+  <p class="word">very</p>
+  <p class="word">바나나</p>
+  <script>
+    //버튼클릭 이벤트 : input 태그의 입력값으로 p 태그를 만들어 body태그에 추가
+    
+      $("#btnAdd").on("click", function(){
+      let text = $("#textWord");
+      let newTag = `<p class="word">${text.val()}</p>`;
+      $(document.body).append(newTag);
+      $("#textWord").val("");
+      $("#textWord").focus();
+    })
+    
+  /*
+    // p 마우스 이벤트
+    $(".word").on("mouseover", function(e){
+      $(e.target).css("backgroundColor", "yellow");
+      
+    })
+  */
+
+  //그룹 이벤트
+    //부모               //이벤트 대상("p", ".word", "#word" 등)
+    $(document.body).on("mouseover", "p", function(e){
+      $(e.target).css("backgroundColor", "yellow");
+    })
+
+  </script>
+</body>
+</html>

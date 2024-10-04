@@ -36,7 +36,7 @@
     // - for문 방식(직접이벤트) 제이쿼리적용 
     let btnAdds = $('.btnAdd');
     btnAdds.on("click", function(e){ 
-        let goodsid = this.closest("tr").dataset.goodsid;
+        let goodsid = $(event.target).closest("tr").data("goodsid");
         console.log(goodsid);
       }
     )
