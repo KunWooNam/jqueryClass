@@ -25,7 +25,7 @@
   </table>
 
   <script>
-    // document.querySelector(".btnAdd").closest("tr").fristElementChild.innerText;
+    // document.querySelector(".btnAdd").closest("tr").firstElementChild.innerText;
     
     // 버튼 클릭 시 tr의 data속성읽기
     /* document.querySelector(".btnAdd").addEventListener("click", function(){
@@ -35,7 +35,7 @@
     let btnAdds = document.querySelectorAll(".btnAdd");
     // - for문 방식
     /*for(btn of btnAdds){
-      btn.addEventListener("click", function(e){ //e=>{} 화살표함수, 즉 익명함수는 주인이 window임
+      btnAdds.addEventListener("click", function(e){ //e=>{} 화살표함수, 즉 익명함수는 주인이 window임
         //this 혹은 (화살표함수는 this 사용 불가능), //console.log(this)
         //e.target = this(btn,본인객체를참조)
         
@@ -60,7 +60,7 @@
     /*
     1. e=>{} 화살표함수, 즉 익명함수는 주인이 window임
     2. this 혹은 (화살표함수는 this 사용 불가능), //console.log(this)
-    3. e.target = this(btn,본인객체를참조)
+    3. e.target = this(btn,본인객체를참조) => X 엄연히따지면 다름.
     4. e.target || window.event.target || this
     */
   </script>

@@ -13,13 +13,17 @@
 <body>
   <div id="divTag">insertAdjacent 연습</div>
   <script>
-    divTag.insertAdjacentHTML();
-    divTag.insertAdjacentHTML("beforebegin","<h1>h1추가</h1>");
+    //divTag.insertAdjacentHTML();
+    /*사용례
+    divTag.insertAdjacentHTML("beforebegin","<p>This is beforebegin</p>");
+    divTag.insertAdjacentHTML("afterbegin","<p>This is afterbegin</p>");
+    divTag.insertAdjacentHTML("beforeend", "<p>This is beforeend</p>");
+    divTag.insertAdjacentHTML("afterend","<p>This is afterend</p>");
+    */
 
-divTag.insertAdjacentHTML("afterbegin","<h1>h1추가 2</h1>");
-divTag.insertAdjacentHTML("beforeend","<h1>h1추가 3</h1>");
-divTag.insertAdjacentHTML("afterend","<h1>h1추가 3</h1>");
-undefined
+    /*
+    암묵적인 전역 변수 생성으로 인해  divTag만으로도 자동으로 선택되는 것이다.
+    */
   </script>
 </body>
 </html>

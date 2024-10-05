@@ -22,29 +22,33 @@
       let inputVal = document.querySelector("#textWord").value;
       body.insertAdjacentHTML("beforeend", `<p class="word">${inputVal}</p>`);
       inputVal = "";
-
-      
-      
     })
     
     //.word 태그에 마우스오버 이벤트 적용 -> 배경색 변경
     //- 직접이벤트
     /*
     const wordClass = document.querySelectorAll(".word");
-      for(word of wordClass){
-        word.addEventListener("mouseenter" , (e)=>{
-          event.target.style.backgroundColor = 'yellow';
-        })
-      }
+    for(let word of wordClass){
+      word.addEventListener("mouseenter",(e)=>{
+        e.target.style.backgroundColor = "yellow";
+      })
+    }
     */
-    
     // - 그룹(=위임)이벤트 : 부모태그에 이벤트 지정(이벤트 전파)
-    document.body.addEventListener("mouseover", function(){
+    /*document.body.addEventListener("mouseover", function(){
       if(event.target.tagName == 'P'){  // 또는 조건으로 evnet.target.clasList.contains("word") 가능
       event.target.style.backgroundColor = 'yellowgreen';
       };
   
     })
+      */
+    document.body.addEventListener('mouseover', (e)=>{
+      if(e.target.classList.contains('word')){
+        e.target.style.backgroundColor = "yellowgreen";
+      }
+    })
+
+
       /*
        1. word.style.~보다 enver.target을 쓰는게 좋음.  
        2. for문의 인수로 let word를 쓰지않고 그냥 word를 쓰면 전역 변수이며, 마지막 word만을 특정한다. let word쓰면 word.style.~ 도 가능

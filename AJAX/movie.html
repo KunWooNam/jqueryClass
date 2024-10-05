@@ -35,7 +35,7 @@
       .then(result => result.json())
       .then(data => {
         let movieList = data.boxOfficeResult.dailyBoxOfficeList; //movie 리스트 //movieRank, movieNm을 demo#dive에 출력
-        console.log( movieList);
+        //console.log( movieList);
         /*
         $("#demo").html("");
         movieList.forEach(element => {
@@ -51,28 +51,50 @@
       })
     }
 
-    let director;
+
+
     document.querySelector("#demo").addEventListener("click", function(e){
       //영화명을 클릭하면 영화코드를 alert <=그룹이벤트 지정
       alert(e.target.getAttribute("data-cd"));
-      //출연배우들, 감독 이름을 info#fiv에 출력
+      //출연배우들, 감독 이름을 info#div에 출력
+      let directors = "";
+      let actors = "";
+      let info = document.querySelector("#info");
+      info.innerHTML = "";
+
       fetch(infoUrl + e.target.getAttribute("data-cd"))
       .then(result => result.json())
       .then(data => {
-       let director = data.movieInfoResult.movieInfo;
-       let director2 = data.movieInfoResult.movieInfo.directors;
-       
-       director2.forEach(element => {
-          director += director2.peopleNm;
-       });
+        let director = data.movieInfoResult.movieInfo.directors;
+        let actor = data.movieInfoResult.movieInfo.actors;
 
-       //let actor = data.data.movieInfoResult.movieInfo.actors;
+        let lastDirector = director[director.length-1];
+        for (let directorNm of director){
+          if(directorNm.peopleNm == lastDirector.peopleNm){
+            directors += directorNm.peopleNm;
+          } else {
+            directors += directorNm.peopleNm + ", ";
+          }
+        }
 
-       console.log("movieInfo" + director);
-       console.log("directors" + director2);
-        document.querySelector("#info").innerHTML=`감독:`
+        let lastActor = actor[actor.length-1];
+        for (let actorNm of actor){
+          if(actorNm.peopleNm == lastActor.peopleNm){
+            actors += actorNm.peopleNm;
+          } else {
+            actors += actorNm.peopleNm + ", ";  
+        }
+
+        
+        info.innerHTML = `감독: ${JSON.stringify(directors)} <br> 배우: ${JSON.stringify(actors)}`;
+        }
       })
     })
+
+    /*
+    1. 문자열 + 객체 =>이렇게 문자열 + 객체 + 연산자를 쓰면 객체는 문자열로 자동형변환된다. 이 때 객체를 문자열로 출력하는 경우 기본적인 형식으로만 보여준다. 따라서 객체를 보기좋게 보여주려면 JSON.stringify()를 사용해야 한다. 
+    사실 그냥 객체 하나만 콘솔에 넘기면 안써줘도되는거였음 ㅋ
+    */
   </script>
 </body>
 </html>

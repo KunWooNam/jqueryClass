@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toggle function</title>
+    <style>
+        .martiz:hover{
+            cursor: pointer;
+        }
+
+        .border {
+            border: solid 2px skyblue;
+        }
+    </style>
+</head>
+<body>
+    <img class="border martiz" src="assets/말티즈 아이콘.jpeg" alt="말티즈 아이콘" width="100px">
+    <script>
+        const togglingBtns = document.querySelector('.martiz');
+
+        togglingBtns.addEventListener('mouseover', function(){
+            togglingBtns.classList.toggle('border');
+        })
+
+        togglingBtns.addEventListener('mouseout', function(){
+            togglingBtns.classList.toggle('border');
+        })
+    </script>
+</body>
+</html>

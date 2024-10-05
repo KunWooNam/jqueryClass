@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1 class="one" id="one">제이쿼리 vs JavaScript</h1>
+  <div class="parent" id="parent">
+    <p class="one child1" id="two">Dom api를 연습해보자! 1</p>
+    <p class="one child2" id="three">Dom api를 연습해보자! 2</p>
+  </div>
+
+  <script>
+    let create = document.createElement("p")
+    create.innerHTML = "새로운 자식";
+
+    let parent = document.getElementById("parent");
+    parent.prepend(create);
+    let child2 = document.questSelector(".child2");
+
+    let $child3 = $("<p>after 연습중!</p>");
+    $(".child1").after($child3);
+
+    $child3.css("backgroundColor","orange");
+    
+  </script>
+</body>
+</html>
