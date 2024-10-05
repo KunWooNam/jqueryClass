@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<title>문자열자르기</title>
+<style>
+    label { display: inline-block; width: 70px; text-align: right; }
+    #btn {width : 250px; }
+</style>
+    <script>
+    window.addEventListener("load", function(){
+        btnEvent();
+    });
+    function btnEvent(){
+        btn.addEventListener("click", function(){ 
+            //코드 작성
+            let str = document.getElementById("result").innerHTML;
+            
+            let first = str.indexOf(',');
+            let second = str.indexOf(',' , first + 1);
+            let third  = str.indexOf(',', second +1); 
+
+            let tel = str.substring(0, first).trim();
+            let name = str.substring(first + 1 , second).trim();
+            let id = str.substring(second + 1, third).trim();
+            let date = str.substring(third + 1).trim();
+            
+            document.getElementsByName("no")[0].value = tel;
+            document.getElementsByName("name")[0].value = name;
+            document.getElementsByName("id")[0].value = id;
+            document.getElementsByName("regDate")[0].value = date;
+        });
+    }
+    </script>
+    
+</head>
+<body>
+    <textarea id="result" rows="3" cols="35">1, 홍길동, hong, 2019/12/01</textarea>
+    <div><button id="btn">텍스트필드에 값 넣기</button></div>
+    <div><label>번호</label><input name="no" type="text"></div>
+    <div><label>이름</label><input name="name" type="text"></div>
+    <div><label>아디</label><input name="id" type="text"></div>
+    <div><label>등록일자</label><input name="regDate" type="text"></div>
+</body>
+</html>
