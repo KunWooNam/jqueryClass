@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>중복입력값체크.jsp</title>
+    <style>
+        [name="no"] { width: 30px; margin: 0px 5px 0px 0px;}
+    </style>
+    <script>
+        window.addEventListener("load", function(){
+            btnInsCheck();
+        });
+        function btnInsCheck(){
+            btnIns.addEventListener("click", function(){
+            var nos = document.getElementsByName("no");
+            var names = document.getElementsByName("name");
+            //중복값 체크: 입력된 이름중에 중복된 이름이 있으면 경고창을 출력하고 리턴
+            //1번문제 코드 작성
+            //배열에 담기 : 
+            var arr = [
+
+            ];
+
+            let name1;
+            let name2;
+            let name3;
+            let name4;
+            for(let i=0; i<names.length; i++){
+                arr.push({no:nos[i].value,
+                    name:names[i].value
+                })
+                if(i == 0){
+                    name1 = names[i].value;
+                } else if (i == 1){
+                    name2 = names[i].value;
+                } else if (i == 2){
+                    name3 = names[i].value;
+                } else if (i == 3){
+                    name4 = names[i].value;
+                }
+
+                if(i != 0 && name1 == names[i].value){
+                    alert(`${names[i].value} 중복값이 존재합니다.`)
+                    return;
+                }
+                
+                if(i != 1 && name2 == names[i].value){
+                    alert(`${names[i].value} 중복값이 존재합니다.`)
+                    return;
+                }
+                
+                if(i != 2 && name3 == names[i].value){
+                    alert(`${names[i].value} 중복값이 존재합니다.`)
+                    return;
+                }
+                
+                if(i != 3 && name4 == names[i].value){
+                    alert(`${names[i].value} 중복값이 존재합니다.`)
+                    return;
+                }
+            }
+            
+            //2번문제 코드 작성
+            //배열 출력
+            console.log(JSON.stringify(arr));
+        });
+        }
+    </script>
+</head>
+<body>
+    <form id="frm" name="frm">
+        <div><span>번호</span> <span>이름</span></div>
+        <div><input name="no"><input name="name"/></div>
+        <div><input name="no"><input name="name"/></div>
+        <div><input name="no"><input name="name"/></div>
+        <div><input name="no"><input name="name"/></div>
+        <div><button type="button" id="btnIns">등록</button></div>
+    </form>
+</body>
+</html
