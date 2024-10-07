@@ -6,7 +6,35 @@
   <title>attrVSprop.html</title>
 </head>
 <body>
+
     <h3>attribute와 property 비교</h3>
     <input id="txt">
+    <br>
+    <input type="checkbox" id="chk" checked="checked">
+    
+    <!--
+    /
+		- propertiy : DOM 속성 / .연산자로 접근 / 객체타입도 지정할 수 있음 / element.className = 'value'
+		- attribute : HTML tag 속성 / setAttribute() 함수로 접근 / 스트링값만 지정할 수 있음 / element.setAttribute('class', 'value')
+
+    ** attr 과 prop은 잘 알려진 html태그 속성은 동일
+    Ex ) txt.min = 10 와 txt.setAtrriubte('min', '10')는 동일
+    , placeholoder .. 등등
+
+    ** attr과 prop의 차이
+    Ex ) class <-> className
+         checked <-> true/false
+         사용자 지정속성  attr ->set / get (스트링만 허용)
+                         prop ->.연산자 (값의 형식이 객체타입 가능)
+		/
+
+    객체타입도 지정이 가능하다는 것의 예시
+      chk.emp = {name: 'scott', no:10}
+      ->{name: 'scott', no: 10}
+      
+      document.querySelector('input:checked').emp.name
+      ->'scott'
+    -->
+    
 </body>
 </html>

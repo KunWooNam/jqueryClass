@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <title>petShop.html</title>
+</head>
+<body>
+  <div class="container text-center">
+    <div class="row gx-4 gy-5 rg-5 pets">
+
+      
+      
+    </div>
+  </div>
+  <script>
+    //pet 리스트 호출 ajax (ajax로 서버호출 성공하면 함수호출)
+  document.addEventListener("DOMContentLoaded", function(){
+    petList();
+    
+    let fetchCheck = "";
+
+    function petList(){
+      fetch("pet.json")
+      .then(result => result.json())
+      .then(petListCallback)
+    }
+
+    //pet 리스트 호출 ajax 콜백함수
+    function petListCallback(dates){
+      let pets = document.querySelector(".pets")
+      for(data of dates){
+        pets.insertAdjacentHTML('beforeend', makeTag(data));
+      }
+      //직접 이벤트
+    }
+
+
+    function makeTag(data){
+      return `<div class="col-lg-3 col-md-6 col-sm-12 ">
+        <div class="card" data-id="${data.id}">
+          <img src="${data.picture}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">${data.name}</h5>
+            <p class="card-text">${data.location} / ${data.age}</p>
+            <a href="#" class="btn btn-primary btnAdopt">분양하기</a>
+          </div>
+        </div>
+      </div>`;
+    }
+    
+    //그룹이벤트 : 분양하기 버튼 클릭하면 해당 pet의 id값을  alert출력
+    let btn = document.querySelector(".pets");
+    console.log(btn)
+    btn.addEventListener("click", function(){
+      if(event.target.classList.contains("btnAdopt")){
+        let btn = event.target.closest("div[class=card]")
+        adptInsert(btn.getAttribute("data-id"));
+      }
+    })
+
+    //분양신청 ajax 호출
+    function adptInsert(id){
+      fetch("adopt.json?id=" + id) 
+      .then(result => result.json())
+      .then(adptInsertCallback) //어떻게 인수를 안넣고?
+    }
+
+    //분양 신청 ajax callback
+    function adptInsertCallback(data){
+      alert(data.petId + " 분양완료")
+      //버튼 비활성화
+      document.querySelector(`[data-id="${data.petId}"]`).querySelector("a").classList.add("disabled")//setAttribute("disabled", "disabled"); -> 버튼아니라서 안됨
+    }
+  })
+  </script>
+</body>
+</html>
