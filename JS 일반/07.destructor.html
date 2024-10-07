@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>destruct.html</title>
+</head>
+<body>
+  <h3>구조분해</h3>
+  <script>
+    //각각 하는 방법
+    emp ={ no:1, ename: 'Scott', dept: '개발'};
+    /*
+    ename = emp.ename;
+    dept = emp.dept;
+    */
+
+    //한줄에 가능함
+    let {dept} = emp;
+    console.log(dept);
+
+    //객체복사 
+      // let copy = emp -> 복사가 아님. 같은 참조값을 공유함 => 얕은복사
+    
+      let empCopy = {...emp, dept: '기획'}; // => Spread 방식 깊은복사
+      //{...emp} -> = {{ no:1, ename: 'Scott', dept: '개발'}}
+      //spread 방식으로 가져온 후, dept: '기획'과 같이 수정도 가능
+    
+    //배열
+    let arr1 = ['March', 'Jan'];
+    let arr2 = ['Fev', 'Dec'];
+
+    let arr3 = [... arr1, ...arr2] //concat함수같은 느낌
+    console.log(arr3[2]); // 출력값 : Fev
+
+    let arrN1 = [1,2,3,4];
+    let arrN2 = [10,20,30,40];
+    let arr6 = [arrN1, arrN2]
+    let arr7 = [...arrN1, arrN2] // [1, 2, 3, 4, arrN2]
+    let arr8 = [...arrN1, ...arrN2]
+    console.log(arr6[1][0]);
+    console.log(arr7[4][0]);
+    console.log(arr8[4]);    
+  </script>
+</body>
+</html>

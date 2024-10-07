@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CssSelector</title>
+</head>
+<body>
+<table border="1">
+  <tr >
+    <td>국어</td>
+    <td>영어</td>
+    <td>수학</td>
+    <td>합계</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>8</td>
+    <td>9</td>
+    <td></td>
+  </tr>
+</table>
+<label for="eng_total">영어합계 :</label>
+<input name="eng_total"></input>
+<script>
+
+  //2열 영어의 합을 구해서 input태그에 출력
+
+  let engs = document.querySelectorAll("td:nth-child(2)")
+  let engTotal = 0;
+  for (let h=1; h<engs.length; h++ ){
+    engTotal += Number(engs[h].innerText);
+  }
+  let engSumInput = document.querySelector("[name='eng_total']");
+  engSumInput.value = engTotal;
+
+  //2~4 행의 합을 합산
+  for(let j = 2; j<=4; j++){
+    let stud = document.querySelectorAll(`tr:nth-child(${j}) td`);
+    let last = document.querySelector(`tr:nth-child(${j}) td:last-child`);
+    let sum = 0 ;
+    for(let i = 0; i<stud.length-1; i++){
+      sum += Number(stud[i].innerHTML);
+    }
+    last.innerHTML = sum;
+  }
+  
+
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>array.html</title>
+</head>
+<body>
+  
+  <script>
+    let arr1 = [10, 5, 7, 1, 20];
+    arr1.sort();
+    console.log(arr1); // [1, 10, 20, 5, 7] => 문자열로 비교하기때문
+
+    // sort()함수에는 비교식을 넣어줄 수 있다.
+    arr1.sort((a, b)=> a-b); //화살표함수 사용
+    console.log(arr1); // [1, 5, 7, 10, 20]
+
+
+    //객체 배열 정렬 /*sort()는 파괴함수. 원본이 바뀐다.*/
+    let emps = [
+        {name: "b", sal:400},
+        {name: "a", sal:200},
+        {name: "d", sal:100},
+        {name: "c", sal:300}
+    ]
+        
+        //이름
+        emps.sort((a,b) => {
+          var nameA = a.name.toUpperCase();
+          var nameB = b.name.toUpperCase();
+          if (nameA < nameB){
+            return -1; // 
+          }
+          if (nameA > nameB){
+            return 1;
+          }
+          //이름이 같을 경우
+          return 0;
+        })
+        
+        console.log(emps);
+        //급여
+        emps.sort((a,b) => a.sal - b.sal)
+        console.log(emps);
+
+    //filter() 비파괴함수. 원본 안바뀜
+    let result = emps.filter(a => a.sal >=200);
+    console.log(result);
+
+    //fine() 비파괴함수. 원본안바뀜. / 조건에 맞는 첫번째 요소 단 1개만 반환
+      //이름이 'na' 검색 후 sal 값 출력
+      let findEmp = emps.find(a=> a.name =='a');
+      console.log(findEmp.sal);
+
+    //map() 비파괴함수. 원본아바뀜 
+      //이름만 추출
+      let onlyName = emps.map(a => a.name);
+      console.log(onlyName);  
+
+      //급여 2배인상
+      let salUp = emps.map(a => {return {...a,sal:a.sal*2}}); // 객체를복사하여 반환(sal값만 반환하는 것이 아니다.) /실행블럭중괄호안에 객체 중괄호를 작성. 
+      console.log(emps);
+      console.log(salUp);
+
+      //map과 같은 동작
+      let salUp2 = [];
+      for (emp of emps){
+        let newEmp = {name: emp.name, sal: emp.sal*2}
+        salUp2.push(newEmp);
+      }
+      console.log(salUp2);
+  </script>
+</body>
+</html>
