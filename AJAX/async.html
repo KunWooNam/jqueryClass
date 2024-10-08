@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>async.html</title>
+</head>
+<body>
+  <h3>동기, 비동기 테스트</h3>
+  <form name="form"> <!--FormData의 인수로 넣을거임-->
+    <input name="userid" value="park">
+    <input name="username" value="scott">
+    <input type="file" name="profile"> <!--파일이 1개라도 있으면 formData로 보내야함-->
+  </form>
+  <button type="button" onclick="callAjax()">요청</button>
+  <button type="button" onclick="getAjax()">get요청</button>
+  <button type="button" onclick="postAjax()">post요청</button>
+  <button type="button" onclick="jsonAjax()">json요청</button>
+  <script>
+    let url = 'http://localhost/restServer/MethodServlet'; //서버가 다르니까 도메인까지 다 적어준 것임.
+    function getAjax(){
+      fetch(url +"?userid=choi")
+      .then(result => result.text()) //string, json string, xml 등 여러 타입이 죄다 넘어올 수 있음. 그래서 지정해야하는 것.
+      .then(result => console.log(result))
+    }
+
+    function postAjax(){
+      const formData = new FormData(document.form); //첨부파일은 formData 객체를 만들어 전송해야함 , 해당 form안에있는 모든 데이터를 싹 다 넣어준다!
+      formData.append("postid","scott king");
+      fetch(url,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded", //body의 데이터는 form데이터라고 선언
+        },
+        body :  formData   //"postid=hungry&var=value" // & 이후로는 넣을 수 있고, 필수는 아님
+      })
+      .then(result => result.text())
+      .then(result => console.log(result))
+    }
+
+    function jsonAjax(){
+      let url = 'http://localhost/restServer/JSONServlet'
+      let data = {userid : "kuno user", username : "kuno name"} //get 제외한 다른 방식(post, put, delete) 다 가능
+      fetch(url,{
+        method : "put",
+        headers : {"Content-Type": "application/json",},
+        body : JSON.stringify(data)  //application/json이랑 세트임
+      })
+      .then(result => result.text())
+      .then(result => console.log(result))
+    }
+
+    //동기적 fetch 사용
+    async function callAjax(){
+      let result = await fetch("http://localhost/restServer/RestServlet");
+      result = await result.text();
+      //.then(result=>result.text());
+      //.then(result=>console.log("response", result));
+
+      console.log("the end")
+    }
+  </script>
+</body>
+</html>

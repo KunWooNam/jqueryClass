@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <title>ajax.html</title>
+</head>
+<body>
+  <h3>jquery ajax 함수</h3>
+  <form name="form"> <!--FormData의 인수로 넣을거임-->
+    <input name="userid" value="park">
+    <input name="username" value="scott">
+    <input type="file" name="profile"> <!--파일이 1개라도 있으면 formData로 보내야함-->
+  </form>
+  <button type="button" onclick="callAjax()">요청</button>
+  <button type="button" onclick="syncAjax()">sync요청</button>
+  <button type="button" onclick="postAjax()">post요청</button>
+  <button type="button" onclick="jsonAjax()">json요청</button>
+
+  <script>
+    let url = "http://localhost/restServer/JSONServlet";
+    //get    
+    function callAjax(){
+      $.ajax(url + "?userid=park")
+      .done(result => console.log(result.username)) //제이쿼리는 알아서 파싱해준다
+      .always(()=>{console.log("always")}) //필수 X , 생략 가능
+    }
+
+    //post
+    function postAjax(){
+      $.ajax(url,{ 
+        method : "post",
+        //contentType : ,  //쿼리스트링(혹은 post)이라면 생략가능 JSON이면 적어줘야함. 기본이 formdata-type
+        data : {userid : 'choi'}// 자동변환되서 넘김 =>"userid=choi"
+      })
+      .done(result=> console.log(result));
+    }
+  </script>
+</body>
+</html>
