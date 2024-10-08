@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>every.html</title>
+</head>
+<body>
+  
+  <script>
+    let emps = [
+        {name: "b", sal:400},
+        {name: "a", sal:200},
+        {name: "d", sal:100},
+        {name: "c", sal:300}
+    ]
+
+    //모든사원의 급여가 200이상인지 검사
+    //방법1. let result = emps.every(function(emp){return emp.sal>=100})   
+
+    //방법2.
+    /*
+    function graterThen200 (emp){
+      return emp.sal >= 100
+    }
+    let result = emp.every(graterThen200);
+    */
+
+    //방법3. 화살표함수
+    //let result = emps.every(element =>  element.sal >= 100);
+    //let graterThen200 =function(emp){return emp.sal >= 100} //익명함수 
+    let graterThen200 = (emp) => element.sal >= 100; //화살표함수
+    let result = emps.every(graterThen200);
+    //{}실행블럭쓰면 return 해줘야함.  EX) element => {return element.sal >= 100}
+    console.log(result);
+  </script>
+</body>
+</html>

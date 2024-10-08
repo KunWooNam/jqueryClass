@@ -5,27 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <title>NumberAdd</title>
-</head>
-<body>
-  <h1>계산기 (제이쿼리 사용)</h1>
-  <input type="text" id="num1">
-  <input type="text" id="num2">
-  <button type="button" >계산</button>
-  <div id="result" style="border:1px solid blue;  "></div>
   <script>
-    $('#button').on('click', function(){
-      let count = 0;
-      let oneNum = $('#num1').val();
-      let twoNum = $('#num2').val();
-      let sum = Number(oneNum) + Number(twoNum);
-      let result = $('#result').html(sum);
-       //유효성 체크 //**과제임 숫자면 출력 아니면 아님을 출력하고 return 
-      //클릭시 마다 count값과 결과를누적해서 출력
-      if( Number.isInteger(sum)){
-        result.insertAdjacentHTML("beforeend", `<h3>카운트 : ${count++}, 두수의 합 : ${sum}</h3> <br>`);  
-      }  else {
-        result.insertAdjacentHTML("beforeend", `<h3>카운트 : ${count++},숫자가 아닙니다."</h3> <br>`)
-      }
+    //$(window).ready(function(){
+    $(function(){  //윗줄코드의 단축형, 이걸 더 많이 씀
+      $('button').on('click', function(){
+        let count = 0;
+        let oneNum = $('#num1').val();
+        let twoNum = $('#num2').val();
+        let sum = Number(oneNum) + Number(twoNum);
+
+        if( Number.isInteger(sum)){
+          $('#result').html(`<h3>카운트 : ${count++}, 두수의 합 : ${sum}</h3> <br>`);
+        }  else {
+          $('#result').html(`<h3>카운트 : ${count++},숫자가 아닙니다.</h3> <br>`);
+        }
+      })
+
     })
      
 
@@ -36,5 +31,14 @@
       */
 
   </script>
+</head>
+<body>
+
+  <h1>계산기 (제이쿼리 사용)</h1>
+  <input type="text" id="num1">
+  <input type="text" id="num2">
+  <button type="button" >계산</button>
+  <div id="result" style="border:1px solid blue; "></div>
+
 </body>
 </html>

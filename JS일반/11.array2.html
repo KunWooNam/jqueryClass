@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>array2.html</title>
+  <script>
+    window.addEventListener("DOMContentLoaded",function(){
+      
+      document.querySelector("#btnAdd").addEventListener("click", function(){
+        /*
+        let flag = false; 
+        document.querySelectorAll('input').forEach((element) => {
+          if(element.value ==""){
+            flag = true 
+            //alert(`${element.getAttribute("name")}을 입력하세요.`);
+          }
+        })
+          */
+        let arr = Array.from(document.querySelectorAll('input'));
+        let flag = arr.every(element => element.value != "")
+        if(!flag){
+          alert('입력하세여')
+        }
+      })
+
+    })
+  </script>
+</head>
+<body>
+  <h3>every, some, forEach / continue, break</h3>
+  <input name="userid">
+  <input name="username">
+  <input name="userpw">
+  <input name="userhobby">
+  <button type="button" id="btnAdd">등록</button>
+</body>
+</html>

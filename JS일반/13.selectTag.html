@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>selectTag.html</title>
+</head>
+<body>
+  <select id="fruit" size="10">
+      <option value="banana">바나나</option>
+      <option value="apple" selected>사과</option>
+      <option value="kiwi">키위</option>
+  </select>
+  <button id="btnAdd">▶</button>
+  <select id="mysel" size="10">
+  </select>
+  <script>
+    /*
+    fruit.selectedIndex = 0;
+    0
+
+    fruit.value
+    'banana'
+
+    fruit.options[0] //options가 selected에 있는 모든 옵션값을 갖고있음.
+    <option value=​"banana">​바나나​</option>​slot
+
+    fruit.options[0].value
+    'banana'
+
+    fruit.options[0].text
+    '바나나'
+
+    fruit.options[fruit.selectedIndex]
+    <option value=​"apple" selected>​사과​</option>​slot
+
+    fruit.options[fruit.selectedIndex].value
+    'apple'
+    */
+
+    // 버튼클릭 시 기존값 이동시키기
+    document.querySelector("#btnAdd").addEventListner("click", function(){
+      document.querySelector("#mysel").add(fruit.options[fruit.selected])
+    })
+    
+  </script>
+</body>
+</html>

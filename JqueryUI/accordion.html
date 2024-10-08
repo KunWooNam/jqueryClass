@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>accordion.html</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+</head>
+<body>
+
+  <button type="button" id="btnAdd">패널추가</button>
+  <button type="button" id="btnModal">모달열기</button>
+  <div id="subject">
+    
+    <h3>java</h3>
+    <div>java란</div>
+
+    <h3>node란</h3>
+    <div>node란</div>
+
+    <h3 >html</h3>
+    <div >html이란<br>html이란<br>html이란<br></div>
+
+  </div>
+  
+  <div id="dialog" title="위  젯">
+    <!--<p>제이쿼리 다이얼로그 위젯</p> -->
+  </div>
+
+  <script>
+    $("#btnAdd").on("click", function(){
+      $("#subject").append(`<h3 >spring</h3><div >spring이란<br>spring이란<br>spring이란<br></div>`)
+      $("#subject").accordion("refresh");
+    })
+
+    $("#subject").accordion({
+      heightStyle: "content",
+      //active : 1, //처음 열리는 창
+      collapsible: true,
+      animate: 250,
+      activate: function( event, ui){ //ui에 많은게 담겨있음
+        console.log(ui.newHeader.text())
+      }
+    });
+    
+    //$( "#subject" ).accordion( "disable" );
+    $( "#subject" ).accordion("option", "active", 2); 
+
+    //dialog
+    let dialog = $( "#dialog" ).dialog({
+      autoOpen: false, 
+      modal: true, //모달 열려있을 때 부모창 제어 불가
+      open: function( event, ui ) { //모달열릴때 내용 넣어줄거임
+        $("#dialog").load("../JS일반/05.todo.html");
+      } 
+    });
+
+    $("#btnModal").on("click", function(){
+      dialog.dialog("open");
+    })
+    </script>
+</body>
+</html>

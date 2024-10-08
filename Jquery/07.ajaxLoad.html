@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <title>ajaxLoad.html</title>
+</head>
+<body>
+  <ul>
+    <li data-url="05.todo.html">todo</li>
+    <li data-url="02.numberAdd.html">숫자계산</li>
+    <li data-url="../JS 일반/01.append.html">추가예제</li>
+  </ul>
+  <div class="panelBody">
+
+  </div>
+  <script>
+    $("ul").on("click","li", function(){
+      let url = $(event.target).data("url")
+      $(".panelBody").load(url)
+    });
+  </script>
+</body>
+</html>
