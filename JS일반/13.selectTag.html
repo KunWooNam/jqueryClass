@@ -39,8 +39,8 @@
     */
 
     // 버튼클릭 시 기존값 이동시키기
-    document.querySelector("#btnAdd").addEventListner("click", function(){
-      document.querySelector("#mysel").add(fruit.options[fruit.selected])
+    document.querySelector("#btnAdd").addEventListener("click", function(){
+      document.querySelector("#mysel").add(fruit.options[fruit.selectedIndex])
     })
     
   </script>
