@@ -5,16 +5,17 @@ let books = []; //전역변수 :
 function booksLoad(){
   fetch("books.json")
   .then(result=> result.json())
-  .then((result)=> {books.push(result),
-                 makeTag(result)
+  .then((result)=> {
+    books.push(result),
+    makeTag(books)
   })  
 })()
 
 //2. makeTag()
 function makeTag(Arr) {
   let tbody = document.querySelector("#list");
-  
-  for(book of Arr){
+  tbody.innerHTML = " ";
+  for(book of Arr[0]){
     let tag = `<tr>
               <td><input type="checkbox"></td>
               <td>${book.no}</td>
@@ -42,13 +43,10 @@ function deleteRow() {
       books[0].forEach((obj,index) =>{
         if(obj.no == no){
           books[0].splice(index, 1)
-          target.closest("tr").remove();
         }
       })
-      //deleteBtn.innerHTML = " ";
-      //makeTag(books); //모르겠습니다.
-      
     }
+    makeTag(books); //모르겠습니다.
     sumPrice();
   })
   
@@ -79,16 +77,7 @@ btn.addEventListener("click", () =>{
   newOne.writer = writer.value;
   newOne.price = price.value;
   books[0].push(newOne);
-  console.log(books);
-  let tbody = document.querySelector("#list");
-  let tag = `<tr>
-              <td><input type="checkbox"></td>
-              <td>${newOne.no}</td>
-              <td>${newOne.title}</td>
-              <td>${newOne.writer}</td>
-              <td class="price">${newOne.price}</td>
-              <td><button>삭제</button></td>
-              </tr>`;
-  tbody.insertAdjacentHTML("beforeend", tag);
-  sumPrice();
+  
+  makeTag(books)
+  sumPrice()
 })
