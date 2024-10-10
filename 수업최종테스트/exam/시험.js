@@ -67,16 +67,13 @@ function sumPrice(){
 //5. 추가 버튼 -> 배열추가 및 makeTag()
 let btn = document.querySelector("#btnAdd")
 btn.addEventListener("click", () =>{
-  let no = document.querySelector("#no");
-  let title = document.querySelector("#title");
-  let writer = document.querySelector("#writer");
-  let price = document.querySelector("#price");
-  let newOne = {};
-  newOne.no = no.value;
-  newOne.title = title.value;
-  newOne.writer = writer.value;
-  newOne.price = price.value;
-  books[0].push(newOne);
+  let inputVal = [];
+  let inputTages = document.querySelector(".userInput").querySelectorAll("input");
+  for(obj of inputTages){
+    inputVal.push(obj.value);
+  }
+  let newBook = {no : inputVal[0], title: inputVal[1], writer: inputVal[2], price: inputVal[3]};
+  books[0].push(newBook);
   
   makeTag(books)
   sumPrice()
