@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    /* Style the buttons that are used to open and close the accordion panel */
+    .accordion {
+        background-color: #eee;
+        border : 1px solid #333;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        text-align: left;
+        outline: none;
+        transition: 0.4s;
+    }
+
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    .active,
+    .accordion:hover {
+      background-color: #ccc;
+    }
+
+    /* Style the accordion panel. Note: hidden by default */
+    .panel {
+      padding: 0 18px;
+      background-color: white;
+      display: none;
+      overflow: hidden;
+    }
+  </style>
+  <script>
+    window.addEventListener("DOMContentLoaded", function(){
+      //ajax로 data.json파일을 로드하고 응답결과로 button과 div 태그를 만들어서 dov#container 에 추가
+      ajax()
+
+      function ajax() {
+        fetch("data.json")
+        .then(result => result.json())
+        .then(insert)
+
+        function insert(dataes){
+          let location = document.querySelector("#container");
+          
+          for(data of dataes){
+            let tag = `<button class="accordion">${data.title}</button>
+                      <div class="panel">
+                        <p>${data.content}</p>
+                      </div>`
+            location.insertAdjacentHTML("beforeend", tag);
+          }
+          btnHandler();
+          
+        }
+      }
+
+      //버튼을 클릭하면 토글되도록 이벤트 추가
+      function btnHandler(){
+        let btn = document.querySelectorAll(".accordion");
+        btn.forEach(ele => {
+          ele.addEventListener('click', function(e){
+            //event.target.nextElementSibling.classList.toggle("panel");
+            let panel = e.target.nextElementSibling;
+            console.log(panel);
+            
+            panel.classList.remove("panel");
+            //몰라잇!
+          })
+        })
+      }
+    });
+
+  </script>
+</head>
+<body>
+  <div id="container">
+    
+  </div>
+</body>
+</html>
