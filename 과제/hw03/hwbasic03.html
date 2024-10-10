@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+
+        // tr 태그를 클릭하면 해당 행의 두번째 td이 있는 파일을 ajax로 로드하여 파싱한 후 텍스트 필드에 출력
+        document.addEventListener('DOMContentLoaded', function(){
+            //1.직접 이벤트
+            // document.querySelectorAll("tr td:nth-child(2)").forEach( element => {
+            //     //조회 버튼을 클릭 이벤트 핸들러
+            //     element.addEventListener("click", nameClickHandler)
+
+            // })
+
+            //2.그룹 이벤트
+            document.querySelector("tbody").addEventListener("click", function(){
+                if(event.target.classList.contains("url")){
+                    nameClickHandler() // nameClickHandler(event)도 가능
+                    //nameClickHandler(event.target.innerHTML); // 이렇게 넘기면 아래 then 에서 오류나는거임. then구문에서는 인수를 객체로보고 참조하고있음.
+                }
+            })
+        })
+		
+        function nameClickHandler(e){
+            let element =  event.target;
+            let url = element.innerHTML //이방식이 좀 더 가독성 높은듯
+            fetch(url) 
+            .then(result => result.json())
+            .then(result => {
+                for(ele in result){
+                    let no  = e.target.previousElementSibling; 
+                    //let no = e.target.closest("tr").querySelector("td:nth-child(1)")
+                    document.querySelector("#no").value = no.innerHTML;
+                    document.querySelector("#" + ele).value = result[ele]; 
+                }
+            })
+
+            //setTimeout(()=>{}, 3000)
+        }
+        	
+ 
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>no</th>
+                            <th>이름</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="url">hong.json</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="url">choi.json</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="url">park.json</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                <form>
+                    <div class="mb-3">
+                        <label for="no" class="form-label">no</label>
+                        <input type="text" class="form-control" id="no" name="no">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id" class="form-label">id</label>
+                        <input type="text" class="form-control" id="id" name="id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">email</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">age</label>
+                        <input type="text" class="form-control" id="age" name="age">
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">gender</label>
+                        <input type="text" class="form-control" id="gender" name="gender">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

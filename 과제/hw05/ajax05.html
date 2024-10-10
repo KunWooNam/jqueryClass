@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .req {
+            color: red
+        }
+
+        label {
+            display: inline-block;
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>사원등록</h2>
+
+    <form name="frm" action="empInsert" method="post" onsubmit="return validateForm()">
+        <div><label>employeeId<span class="req">*</span></label>
+            <input name="employeeId">
+        </div>
+        <div><label>firstName</label>
+            <input name="firstName">
+        </div>
+        <div><label>lastName<span class="req">*</span></label>
+            <input name="lastName">
+        </div>
+        <div><label>email<span class="req">*</span></label>
+            <input name="email">
+        </div>
+        <div><label>hireDate<span class="req">*</span></label>
+            <input name="hireDate">
+        </div>
+        <div class="dep_id"><label>department_id</label>
+            <!--1번-->
+        </div>
+        <div><label>jobId<span class="req">*</span></label>
+            <select name="jobId">
+                <option value="">선택
+                <!--2번-->
+            </select>
+        </div>
+        <div><label>manager_id</label>
+            <select name="managerId">
+                <option value="">선택
+                <option value="100">100 king
+            </select>
+        </div>
+        <button>등록</button>
+    </form>
+
+    <script>
+        //exc() => 함수 호이스팅
+        (function exc (){
+            fetch("deptJob.json")
+            .then(result=>result.json())
+            .then(makeTag)
+        })()
+
+        function makeTag(data) {
+            let loc1 = document.querySelector(".dep_id");
+            let loc2 = document.getElementsByName("jobId")[0];
+              for(obj of data.depts){
+                  let tag = `<span id="deptList"> <input type="radio" value="${obj.department_id}">${obj.department_name}</span>`;
+                  loc1.insertAdjacentHTML("beforeend", tag)
+              }
+              for(obj of data.jobs){
+                  let tag = `<option value="${obj.job_id}">${obj.job_title}`;
+                  loc2.insertAdjacentHTML("beforeend", tag)
+              }
+        }
+        //department_name: 'Administration', department_id: '10'
+        //job_title: 'Stock Manager', job_id: 'ST_MAN'
+
+    </script>
+</body>
+</html>
